@@ -93,6 +93,9 @@ project(":application") {
         implementation(project(":domain"))
         implementation(project(":infrastructure"))
         implementation("javax.transaction:javax.transaction-api")
+        testImplementation("org.springframework.boot:spring-boot-starter-test") {
+            exclude(module = "mockito-core")
+        }
     }
 }
 
@@ -107,7 +110,10 @@ project(":domain") {
 
     dependencies {
         compileOnly("org.springframework.boot:spring-boot-starter-data-jpa")
-        testRuntimeOnly("com.h2database:h2")
+
+        testImplementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        testImplementation(project(":infrastructure"))
+//        testRuntimeOnly("com.h2database:h2")
         testImplementation("org.springframework.boot:spring-boot-starter-test") {
             exclude(module = "mockito-core")
         }

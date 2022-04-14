@@ -18,6 +18,7 @@ class MemberRegistrationService(
             // TODO: 커스텀 익셉션으로 변경하기
             throw RuntimeException("이미 사용중인 이메일 입니다.")
         }
+
         val savedMember = memberRepository.save(member)
     }
 }

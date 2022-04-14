@@ -16,4 +16,8 @@ class Member(
     @GeneratedValue
     @Column(name = "member_no")
     val id: Long = 0L
+
+    override fun toString(): String {
+        return "Member(username='$username', email='$email', id=$id)"
+    }
 }
