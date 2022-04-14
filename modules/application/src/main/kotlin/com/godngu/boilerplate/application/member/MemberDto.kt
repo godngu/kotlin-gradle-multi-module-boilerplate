@@ -7,7 +7,7 @@ data class MemberDto(
     val username: String,
     val email: String,
 ) {
-    companion object {
+    companion object Converter {
         fun of(member: Member): MemberDto {
             return MemberDto(
                 memberNo = member.id,

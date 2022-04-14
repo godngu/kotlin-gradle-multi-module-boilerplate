@@ -7,20 +7,23 @@ import com.godngu.boilerplate.domain.common.UseCase
 import com.godngu.boilerplate.domain.member.Member
 import com.godngu.boilerplate.domain.member.MemberRepository
 import org.springframework.data.domain.Page
+import org.springframework.transaction.annotation.Transactional
+import javax.annotation.PostConstruct
 
 @UseCase
 class MemberFindService(
     val memberRepository: MemberRepository
 ) : MemberFindUseCase {
 
-    override fun findMembers(query: PageRequestModel): PageModel<MemberDto> {
+    @PostConstruct
+    fun setUp() {
         saveMembersForTest()
-        query.sort
-        val page: Page<Member> = memberRepository.findAll(query.transform())
+    }
 
-        return PageModelMapper.map(
-            page.map(MemberDto.Companion::of)
-        )
+    @Transactional(readOnly = true)
+    override fun findMembers(query: PageRequestModel): PageModel<MemberDto> {
+        val page: Page<Member> = memberRepository.findAll(query.convert())
+        return PageModelMapper.map(page, MemberDto.Converter::of)
     }
 
     private fun saveMembersForTest() {

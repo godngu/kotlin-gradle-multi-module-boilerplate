@@ -31,7 +31,6 @@ class MemberController(
     @GetMapping("/api/v1/members")
     fun findMembers(): PageModel<MemberDto> {
         val pageRequestModel = PageRequestModel.of(2, 3, SortModel.Direction.DESC, "id")
-
         return memberFindUseCase.findMembers(pageRequestModel)
     }
 }

@@ -28,11 +28,11 @@ class PageRequestModel private constructor(
         }
     }
 
-    fun transform(): PageRequest {
+    fun convert(): PageRequest {
         return PageRequest.of(
             this.page,
             this.size,
-            this.sort.transform()
+            this.sort.convert()
         )
     }
 }

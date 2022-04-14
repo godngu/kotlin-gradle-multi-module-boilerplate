@@ -22,8 +22,8 @@ class SortModel private constructor(var orders: List<Order>) {
         }
     }
 
-    fun transform(): Sort {
-        return Sort.by(orders.map { it.transform() })
+    fun convert(): Sort {
+        return Sort.by(orders.map { it.convert() })
     }
 
     enum class Direction {
@@ -33,7 +33,7 @@ class SortModel private constructor(var orders: List<Order>) {
 
         fun isDescending() = this == DESC
 
-        fun transform(): Sort.Direction {
+        fun convert(): Sort.Direction {
             return when (this) {
                 ASC -> Sort.Direction.ASC
                 DESC -> Sort.Direction.DESC
@@ -57,8 +57,8 @@ class SortModel private constructor(var orders: List<Order>) {
         val direction: Direction,
         val property: String
     ) {
-        fun transform(): Sort.Order {
-            return Sort.Order(direction.transform(), property)
+        fun convert(): Sort.Order {
+            return Sort.Order(direction.convert(), property)
         }
     }
 }

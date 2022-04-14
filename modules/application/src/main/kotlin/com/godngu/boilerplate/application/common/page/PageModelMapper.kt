@@ -1,11 +1,17 @@
 package com.godngu.boilerplate.application.common.page
 
 import org.springframework.data.domain.Page
+import java.util.function.Function
 import javax.persistence.Entity
 
 class PageModelMapper {
 
     companion object {
+
+        inline fun <reified T, reified U> map(page: Page<T>, converter: Function<in T, out U>): PageModel<U> {
+            val convertedPage: Page<U> = page.map(converter)
+            return map(convertedPage)
+        }
 
         inline fun <reified T> map(page: Page<T>): PageModel<T> {
             require(isNotEntity<T>()) {
