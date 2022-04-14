@@ -15,6 +15,7 @@ class MemberFindService(
     val memberRepository: MemberRepository
 ) : MemberFindUseCase {
 
+    // TODO : 테스트 로직 삭제해야 함
     @PostConstruct
     fun setUp() {
         saveMembersForTest()

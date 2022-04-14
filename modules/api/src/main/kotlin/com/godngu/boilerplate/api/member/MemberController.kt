@@ -1,6 +1,7 @@
 package com.godngu.boilerplate.api.member
 
 import com.godngu.boilerplate.application.common.page.PageModel
+import com.godngu.boilerplate.application.common.page.PageModelMapper
 import com.godngu.boilerplate.application.common.page.PageRequestModel
 import com.godngu.boilerplate.application.common.page.SortModel
 import com.godngu.boilerplate.application.member.MemberDto
@@ -28,9 +29,24 @@ class MemberController(
         memberRegistrationUseCase.registerMember(command)
     }
 
-    @GetMapping("/api/v1/members")
-    fun findMembers(): PageModel<MemberDto> {
+    /**
+     * application 응답 결과를 API 응답으로 사용할 때
+     * @return PageModel<MemberDto>
+     */
+    @GetMapping("/api/v1/members1")
+    fun findMembers1(): PageModel<MemberDto> {
         val pageRequestModel = PageRequestModel.of(2, 3, SortModel.Direction.DESC, "id")
         return memberFindUseCase.findMembers(pageRequestModel)
+    }
+
+    /**
+     * application 응답 결과를 api 전용 DTO로 변환하여 API 응답으로 사용할 때
+     * @return PageModel<MemberResponse>
+     */
+    @GetMapping("/api/v1/members2")
+    fun findMembers2(): PageModel<MemberResponse> {
+        val pageRequestModel = PageRequestModel.of(2, 3, SortModel.Direction.DESC, "id")
+        val page: PageModel<MemberDto> = memberFindUseCase.findMembers(pageRequestModel)
+        return PageModelMapper.map(page, MemberResponse.Converter::of)
     }
 }
