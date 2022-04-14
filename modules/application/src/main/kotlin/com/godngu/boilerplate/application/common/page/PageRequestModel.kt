@@ -4,8 +4,8 @@ import com.godngu.boilerplate.application.common.page.SortModel.Direction
 import org.springframework.data.domain.PageRequest
 
 class PageRequestModel private constructor(
-    page: Int,
-    size: Int,
+    page: Int = 0,
+    size: Int = 10,
     val sort: SortModel
 ) : AbstractPageRequestModel(page, size) {
 

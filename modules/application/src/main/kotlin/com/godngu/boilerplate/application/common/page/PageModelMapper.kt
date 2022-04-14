@@ -15,6 +15,7 @@ class PageModelMapper {
             return PageModel(
                 totalPages = page.totalPages,
                 totalElements = page.totalElements,
+                page = page.pageable.pageNumber,
                 size = page.size,
                 first = page.isFirst,
                 last = page.isLast,

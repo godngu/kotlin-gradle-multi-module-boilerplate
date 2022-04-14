@@ -46,11 +46,7 @@ class SortModel private constructor(var orders: List<Order>) {
                     valueOf(value.uppercase())
                 } catch (e: Exception) {
                     throw IllegalArgumentException(
-                        String.format(
-                            "Invalid value '%s' for orders given! Has to be either 'desc' or 'asc' (case insensitive).",
-                            value
-                        ),
-                        e
+                        "Invalid value $value for orders given! Has to be either 'desc' or 'asc' (case insensitive).", e
                     )
                 }
             }

@@ -15,6 +15,7 @@ class MemberFindService(
 
     override fun findMembers(query: PageRequestModel): PageModel<MemberDto> {
         saveMembersForTest()
+        query.sort
         val page: Page<Member> = memberRepository.findAll(query.transform())
 
         return PageModelMapper.map(
