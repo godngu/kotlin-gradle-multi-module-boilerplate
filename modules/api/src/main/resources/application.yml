@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: kotlin-gradle-multimodule-boilerplate
+
+  profiles:
+    default: local
+    group:
+      "local": "app-local,domain-local,infra-local"
+      "dev": "app-dev,domain-dev,infra-dev"

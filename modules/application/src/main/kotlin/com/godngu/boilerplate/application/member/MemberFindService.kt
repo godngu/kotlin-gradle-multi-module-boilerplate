@@ -28,7 +28,7 @@ class MemberFindService(
     }
 
     private fun saveMembersForTest() {
-        val elements: Long = 22
+        val elements: Long = 27
         for (i in (1..elements)) {
             memberRepository.save(Member("name$i", "email$i@gmail.com"))
         }
