@@ -111,7 +111,6 @@ project(":domain") {
     dependencies {
         compileOnly("org.springframework.boot:spring-boot-starter-data-jpa")
 
-        testImplementation("org.springframework.boot:spring-boot-starter-data-jpa")
         testImplementation(project(":infrastructure"))
 //        testRuntimeOnly("com.h2database:h2")
         testImplementation("org.springframework.boot:spring-boot-starter-test") {
@@ -137,11 +136,26 @@ project(":infrastructure") {
     bootJar.enabled = false
     jar.enabled = true
 
+    apply(plugin = "kotlin-jpa")
+
     dependencies {
         implementation(project(":domain"))
         api("org.springframework.boot:spring-boot-starter-data-jpa")
-        // Hibernate5Module이 지연로딩 되는 객체의 프로퍼티 직렬화를 가능하게 해준다. (jackson ObjectMapper support)
         implementation("com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.9.8")
         runtimeOnly("com.h2database:h2")
+
+        testImplementation("org.springframework.boot:spring-boot-starter-test") {
+            exclude(module = "mockito-core")
+        }
+    }
+
+    allOpen {
+        annotation("javax.persistence.Entity")
+        annotation("javax.persistence.MappedSuperclass")
+        annotation("javax.persistence.Embeddable")
+    }
+
+    noArg {
+        annotation("javax.persistence.Entity")
     }
 }
