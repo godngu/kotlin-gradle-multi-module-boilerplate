@@ -1,10 +1,15 @@
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/datajpa
-    username: sa
-    password:
-  # TODO: Reader/Writer 적용
+    writer:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:tcp://localhost/~/datajpa
+      username: sa
+      password:
+    reader:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:tcp://localhost/~/datajpa
+      username: sa
+      password:
 
   jpa:
     hibernate:
@@ -13,6 +18,7 @@ spring:
       hibernate:
         show_sql: false
         format_sql: true
+    # TODO: 아래 설정은 코드상에서 어떻게 넣어야 하는가?
     open-in-view: false
 
 logging.level:

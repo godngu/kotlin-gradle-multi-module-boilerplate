@@ -57,3 +57,12 @@
 
 
 ### infrastructure
+
+## 로직별 설명
+
+### Database Reader/Writer Replication
+
+- `@Transactional` 어노테이션의 `readOnly=true` 속성 설정에 따라 라우팅 된다.
+  - `readOnly=true` 에서는 `insert` 쿼리가 발생하지 않는다.
+  - TODO: update/delete 쿼리 확인 필요
+- yml에 datasource 설정시 `jdbc-url`로 설정해야 한다.

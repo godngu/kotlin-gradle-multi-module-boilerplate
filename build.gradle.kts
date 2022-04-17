@@ -112,7 +112,7 @@ project(":domain") {
         compileOnly("org.springframework.boot:spring-boot-starter-data-jpa")
 
         testImplementation(project(":infrastructure"))
-//        testRuntimeOnly("com.h2database:h2")
+        testRuntimeOnly("com.h2database:h2")
         testImplementation("org.springframework.boot:spring-boot-starter-test") {
             exclude(module = "mockito-core")
         }
@@ -143,6 +143,7 @@ project(":infrastructure") {
         api("org.springframework.boot:spring-boot-starter-data-jpa")
         implementation("com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.9.8")
         runtimeOnly("com.h2database:h2")
+        runtimeOnly("mysql:mysql-connector-java")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test") {
             exclude(module = "mockito-core")
