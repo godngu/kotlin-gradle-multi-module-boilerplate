@@ -9,7 +9,3 @@ spring:
         - app-local
         - domain-local
         - infra-local
-      dev:
-        - app-dev
-        - domain-dev
-        - infra-dev
