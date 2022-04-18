@@ -18,7 +18,7 @@ class MemberFindService(
     // TODO : 테스트 로직 삭제해야 함
     @PostConstruct
     fun setUp() {
-        saveMembersForTest()
+//        saveMembersForTest()
     }
 
     @Transactional(readOnly = true)
